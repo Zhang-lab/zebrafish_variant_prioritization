@@ -6,7 +6,7 @@ The zebrafish variant prioritization (zvp) pipeline is designed to discover, cla
 
 ## Background and General strategy
 
-In a heavily mutagenized line (such as occurs with ENU mutagensis), phenotypic progeny will carry many induced mutations as well as naturally occuring variants with respect to the published zebrafish genomic sequence (GRCz11 for this work). Whole genome sequencing (WGS) or whole exome sequencing (WES) and subsequent variant calling may identify millions or tens of millions of singlue nucleotide variants (SNVs) and small insertions and deletions (indels) in mutagenized lines. The goal of zvp is to greatly reduce the number of SNVs and indels that must be considered by experiemental scientists into a managable number while retaining and prioritizing potential causal candidates. zvp achieves this goal through knowledge of the experimental design to filter potential variants and through variant classification by inferred trascriptomic effects boosted ensembl VEP to score coding variants in terms of predicted effect.
+In a heavily mutagenized line (such as occurs with ENU mutagensis), phenotypic progeny will carry many induced mutations as well as naturally occuring variants with respect to the published zebrafish genomic sequence (GRCz11 for this work). Whole genome sequencing (WGS) or whole exome sequencing (WES) and subsequent variant calling may identify millions or tens of millions of singlue nucleotide variants (SNVs) and small insertions and deletions (indels) in mutagenized lines. The goal of zvp is to greatly reduce the number of SNVs and indels that must be considered by experiemental scientists into a managable number while retaining and prioritizing potential causal candidates. zvp achieves this goal through knowledge of the experimental design to filter potential variants and through variant classification by inferred trascriptomic effects boosted ensembl VEP to score coding variants in terms of predicted effect. Phenotypic F3 fish are sequenced and their phenotyipcally WT sibglings (genotypically heterozygous and WT homozygous) are sequenced in parallel using either WGS or WES.
 
 ## Usage
 
@@ -15,4 +15,4 @@ zvp is distributed as a singularity image. This can be downloaded via:
 wget http://regmedsrv1.wustl.edu/Public_SPACE/pgontarz/Public_html/Zebrafish_variant_calling_and_prioritization/zvp.simg
 ```
 
-The singularity image is somewhat large but contains all necessary reference, annotation, and ensembl VEP database files to run locally. zvp is for use with GRCz11
+The singularity image is somewhat large but contains all necessary reference, customized annotation, and customized ensembl VEP database files to run locally. zvp is for use with GRCz11 as assemblies GRCz10 and zv9 are not supported by VEP. zvp
