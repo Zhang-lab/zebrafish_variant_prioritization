@@ -12,7 +12,7 @@ In a heavily mutagenized line (such as occurs with ENU mutagensis), phenotypic p
 
 zvp is distributed as a singularity image. This can be downloaded via:
 ```
-http://regmedsrv1.wustl.edu/Public_SPACE/pgontarz/Public_html/Zebrafish_variant_calling_and_prioritization/zvp.simg
+wget http://regmedsrv1.wustl.edu/Public_SPACE/pgontarz/Public_html/Zebrafish_variant_calling_and_prioritization/zvp.simg
 ```
 
 The singularity image is somewhat large but contains all necessary reference, annotation, and ensembl VEP database files to run locally. zvp is for use with GRCz11
