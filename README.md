@@ -42,15 +42,15 @@ As a note: what this command does is run the singularity container zvp.simg. -B 
 
 ## Output
 
-output_directory
-|--QC
-|  |--Mutant_Depths.txt
-|  |--Mutant_Qualities.txt
-|  |--Mutant_vcf_Depths.txt
-|  |--Mutant_vcf_Qualities.pdf
-|  |--Sibling_Depths.txt
-|  |--Sibling_Qualities.txt
-|  |--Sibling_vcf_Depths.txt
-|  |--Sibling_vcf_Qualities.pdf
-|  |--VCF_hits_plot.pdf
+.output_directory
+.|--QC
+.|  |--Mutant_Depths.txt
+.|  |--Mutant_Qualities.txt
+.|  |--Mutant_vcf_Depths.txt
+.|  |--Mutant_vcf_Qualities.pdf
+.|  |--Sibling_Depths.txt
+.|  |--Sibling_Qualities.txt
+.|  |--Sibling_vcf_Depths.txt
+.|  |--Sibling_vcf_Qualities.pdf
+.|  |--VCF_hits_plot.pdf
 
