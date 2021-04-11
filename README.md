@@ -33,6 +33,6 @@ zvp takes as input two vcf files - one for the variants called from the WGS or W
 bwa mem -t <threads> /path/to/GRCz11.fa mutant_reads_1.fastq.gz mutant_reads_2.fastq.gz | samtools sort -@ <threads> - > mutant_sorted_aligned.bam
 bcftools mpileup -d 100 -q 20 -Q 20 --threads <threads> -Ou -f /path/to/GRCz11.fa mutant_sorted_aligned.bam | bcftools call -Ou -mv | bcftools filter -s LowQual -e '%QUAL<20 || DP>100' > mutant_variants.vcf
 ```
-Repeat this process for sibling data.
+Repeat this process for sibling data. 
 
 
