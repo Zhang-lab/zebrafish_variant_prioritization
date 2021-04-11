@@ -33,6 +33,24 @@ zvp takes as input two vcf files - one for the variants called from the WGS or W
 bwa mem -t <threads> /path/to/GRCz11.fa mutant_reads_1.fastq.gz mutant_reads_2.fastq.gz | samtools sort -@ <threads> - > mutant_sorted_aligned.bam
 bcftools mpileup -d 100 -q 20 -Q 20 --threads <threads> -Ou -f /path/to/GRCz11.fa mutant_sorted_aligned.bam | bcftools call -Ou -mv | bcftools filter -s LowQual -e '%QUAL<20 || DP>100' > mutant_variants.vcf
 ```
-Repeat this process for sibling data. 
+Repeat the previous two steps for sibling data. Note that the bcftools options "-d" and "DP" specify depth.  For WGS, values of 100 have been tested to work well for removing extremely high depth variants from repeat or blacklist elements of the genome.  For WES, a higher value for depth, such as 500 is warranted as depths are generally much higher in WES than WGS.
+Move or copy the vcf files into the your working directory. Your copy of zvp can be located anywhere. zvp can now be run as follows:
+```
+singularity run -B :./:/process /path/to/zvp.simg mutant_variants.vcf sibling_variants.vcf output_directory
+```
+As a note: what this command does is run the singularity container zvp.simg. -B instructs singularity to create a binding such that output can be written to outside the image.
 
+## Output
+
+output_directory
+|--QC
+|  |--Mutant_Depths.txt
+|  |--Mutant_Qualities.txt
+|  |--Mutant_vcf_Depths.txt
+|  |--Mutant_vcf_Qualities.pdf
+|  |--Sibling_Depths.txt
+|  |--Sibling_Qualities.txt
+|  |--Sibling_vcf_Depths.txt
+|  |--Sibling_vcf_Qualities.pdf
+|  |--VCF_hits_plot.pdf
 
