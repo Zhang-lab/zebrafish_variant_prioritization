@@ -73,7 +73,8 @@ output_directory
 |--SNP_visualization
    |--Mutant_SNPs.bg.gz
    |--Mutant_SNPs.bg.gz.tbi
-
-
 ```
-
+The QC directory is provided to assess the quality of the vcf files. For example, extremely low depths may render variant calling unreliable.
+The Manhattan_plots directory contains the p-value Manhattan plot (step 9 of background).  For forward screens following the given structure, the Manhattan plot will likely give a particular region of the genome to focus on (usually a few megabases).
+The contents of the SNP and indel reports directories should be self-explanatory.
+Finally, the SNP_visualization directory contains a bedgraph file of the locations and p-values of SNPs for visualization within either the UCSC genome browser or Washington University epigenomebrowser.
