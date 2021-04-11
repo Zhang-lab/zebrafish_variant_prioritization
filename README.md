@@ -54,5 +54,26 @@ output_directory
 |  |--Sibling_vcf_Depths.txt
 |  |--Sibling_vcf_Qualities.pdf
 |  |--VCF_hits_plot.pdf
+|--Manhattan_plots
+|  |--Allele_freq_Manhattan_plot.pdf
+|  |--P-val_Manhattan_plot.pdf
+|  |--Chromosomal_plots
+|     |--Chr1_Manhattan_Plot.pdf
+|     |--.....
+|     |--Chr25_Manhattan_Plot.pdf
+|     |--ChrMT_Manhattan_Plot.pdf
+|--SNP_reports
+|  |--CD_SNP_Report.xlsx
+|  |--Noncoding_Region_SNP_Report.xlsx
+|  |--Splicing_Region_SNP_Report.xlsx
+|--Indel_reports
+|  |--CD_indel_Report.xlsx
+|  |--Noncoding_Region_indel_Report.xlsx
+|  |--Splicing_Region_indel_Report.xlsx
+|--SNP_visualization
+   |--Mutant_SNPs.bg.gz
+   |--Mutant_SNPs.bg.gz.tbi
+
+
 ```
 
