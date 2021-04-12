@@ -1,0 +1,63 @@
+Bootstrap: docker
+From: pgontarz/zebrafish_variant_pipeline:0.1.1
+IncludeCmd: yes
+
+%runscript
+cd /process \
+        && bash /pipeline.sh  $@
+
+%post
+########################
+apt-get update && apt-get install -y locales
+locale-gen en_US.UTF-8
+
+apt-get install debconf
+dpkg-reconfigure locales
+#####################
+mkdir /process
+
+# download pipe
+curl -o /pipeline.sh  http://regmedsrv1.wustl.edu/Public_SPACE/pgontarz/Public_html/Zebrafish_variant_calling_and_prioritization/mutation_screen_wrapper_docker.sh
+
+# download resources
+curl -o /RefData/GRCz11_RefData.tar.gz http://regmedsrv1.wustl.edu/Public_SPACE/pgontarz/Public_html/Zebrafish_variant_calling_and_prioritization/GRCz11_RefData.tar.gz \
+    && cd /RefData \
+    && tar -xzf  GRCz11_RefData.tar.gz \
+    && rm GRCz11_RefData.tar.gz
+    
+# download cpp source and R scripts and compile
+curl -o /Programs/source_and_scripts.tar.gz  http://regmedsrv1.wustl.edu/Public_SPACE/pgontarz/Public_html/Zebrafish_variant_calling_and_prioritization/source_and_scripts.tar.gz \
+    && cd /Programs \
+    && tar -xzf  source_and_scripts.tar.gz \
+    && g++ chromosomal_match.cpp -o chromosomal_match \
+    && g++ filter_VCF.cpp -o filter_VCF \
+    && g++ FischerVCF.cpp -o FischerVCF \
+    && g++ formatBedGraph.cpp -o formatBedGraph \
+    && g++ formatVCF.cpp -o formatVCF \
+    && g++ GenerateMutationReport.cpp -o GenerateMutationReport \
+    && g++ GenesInCoding.cpp -o GenesInCoding \
+    && g++ GenesInNoncoding.cpp -o GenesInNoncoding \
+    && g++ match_VCF_annotations.cpp -o match_VCF_annotations \
+    && g++ merge_avg_hits.cpp -o merge_avg_hits \
+    && g++ merge_CD_SNP_report_VEP.cpp -o merge_CD_SNP_report_VEP \
+    && g++ split_VCF_SNP_indels.cpp -o split_VCF_SNP_indels \
+    && g++ VCF_avg_hits.cpp -o VCF_avg_hits \
+    && g++ VCF_GTF_split.cpp -o VCF_GTF_split \
+    && g++ vcf_qual_report_gen.cpp -o vcf_qual_report_gen \
+    && rm *.cpp
+    
+    #download and unpack VEP package
+    curl -o /Programs/VEP.tar.gz http://regmedsrv1.wustl.edu/Public_SPACE/pgontarz/Public_html/Zebrafish_variant_calling_and_prioritization/VEP.tar.gz \
+    && cd /Programs \
+    && tar -xzf VEP.tar.gz \
+    && rm VEP.tar.gz
+    
+    #download vcftools
+    curl -o /Programs/vcftools.tar.gz http://regmedsrv1.wustl.edu/Public_SPACE/pgontarz/Public_html/Zebrafish_variant_calling_and_prioritization/vcftools_0.1.13.tar.gz \
+    && cd /Programs \
+    && tar -xzf vcftools.tar.gz \
+    && rm vcftools.tar.gz
+
+#%environment
+#export PATH=$PATH:/opt/miniconda/bin/
+
